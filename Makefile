@@ -6,7 +6,7 @@ RESUME_SRCS = $(shell find $(RESUME_DIR) -name '*.tex')
 
 
 resume.pdf: 
-	$(CC) iz_resume.tex -output-directory=$(RESUME_DIR) $<
+	$(CC) izhar_resume.tex -output-directory=$(RESUME_DIR) $<
 
 clean:
-	rm -rf $(EXAMPLES_DIR)/*.pdf
+	rm -rf $(RESUME_DIR)/*.pdf
