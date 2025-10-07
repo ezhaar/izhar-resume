@@ -15,18 +15,11 @@ jobs:
 
     - name: Compile
       run: make
-    - name: Commit and push PDF
-      working-directory: ${{ github.workspace }}
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
 
-        PDF_PATH=$(find . -name "*.pdf" | head -n 1)
-        if [ -z "$PDF_PATH" ]; then
-          echo "No PDF generated!"
-          exit 1
-        fi
-        git add "$PDF_PATH"
-        git commit -m "Auto-build: update resume PDF" || echo "No changes to commit"
-        git push
 
+    - name: Upload generated PDF as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: resume-pdf
+        path: |
+          ./*.pdf
