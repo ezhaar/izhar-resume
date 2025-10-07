@@ -16,18 +16,16 @@ jobs:
     - name: Compile
       run: make
     - name: Commit and push PDF
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Move PDF if generated in subdir
-          PDF_PATH=$(find . -name "*.pdf" | head -n 1)
-          if [ -z "$PDF_PATH" ]; then
-            echo "No PDF generated!"
-            exit 1
-          fi
-
-          git add "$PDF_PATH"
-          git commit -m "Auto-build: update resume PDF" || echo "No changes to commit"
-          git push
+        PDF_PATH=$(find . -name "*.pdf" | head -n 1)
+        if [ -z "$PDF_PATH" ]; then
+          echo "No PDF generated!"
+          exit 1
+        fi
+        git add "$PDF_PATH"
+        git commit -m "Auto-build: update resume PDF" || echo "No changes to commit"
+        git push
 
